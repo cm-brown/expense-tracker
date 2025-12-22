@@ -23,6 +23,14 @@ def read_expenses_storage(filepath):
             read_expenses.append(row)
         return read_expenses
 
+def modify_expenses_storage(additions):
+    expense = {}
+    expense["id"] = len(read_expenses) 
+    expense["date"] = user_date
+    expense["categpry"] = user_cata
+    expense["description"] = user_desc
+    expense["amount"] = user_amount
+
 """Writes the contents of read_expenses after modification"""
 def write_expenses_storage(expenses, filepath):
     with open(filepath, mode='w', newline='') as csvfile:
