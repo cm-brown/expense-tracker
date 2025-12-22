@@ -2,7 +2,7 @@ import os
 import csv
 
 storage_file = "data/expenses.csv"
-total_expenses = [{'id': '1', 'date': 'ad', 'category': 'ac', 'description': 'aD', 'amount': 'aa'}, {'id': '2', 'date': 'bd', 'category': 'bc', 'description': 'bD', 'amount': 'ba'}, {'id': '3', 'date': 'cd', 'category': 'cc', 'description': 'cD', 'amount': 'ca'}]
+total_expenses = []
 fieldnames = ['id', 'date', 'category', 'description', 'amount']
 
 def initialize_expenses_storage():
