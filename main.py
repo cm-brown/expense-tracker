@@ -1,23 +1,23 @@
-from storage import initialize_expenses_storage, read_expenses_storage, write_expenses_storage, storage_file, total_expenses
+from storage import initialize_expenses_storage, read_expenses_storage, write_expenses_storage, storage_file
+
+def prompt_expense():
+    date_str = input("Date (DD-MM-YYY): ").strip()
+    category = input("Category: ").strip()
+    description = input("Description: ").strip()
+    amount_str = input("Amount (No negative #'s): ").strip()
+    
+    print {
+        "date": date_str,
+        "category": category,
+        "description": description,
+        "amount": amount_str
+    }
 
 def main():
     
     initialize_expenses_storage()
-    write_expenses_storage(total_expenses, storage_file)
+    read_expenses_storage(storage_file)
 
-#    try:
-#        user_welcome_input = int(input(
-#            "Welcome to Expense Tracker.\n\nPlease choose an option.\n"
-#            "1. ADD AN EXPENSE\n"
-#            "2. VIEW MONTHLY EXPENSES\n"
-#            "3. COMPARE MONTHLY EXPENSES\n"
-#        ))
-#        
-#        if user_welcome_input == 1:
-#            print("Add Expense")
-#        else:
-#            print("Error, option chosen is not available.")
-#    
-#    except ValueError:
-#        print("Error, option chosen is not available.")
+    prompt_expense()
 main()
+

@@ -25,7 +25,7 @@ def read_expenses_storage(filepath):
 
 def modify_expenses_storage(additions):
     expense = {}
-    expense["id"] = len(read_expenses) 
+    expense["id"] = max_id
     expense["date"] = user_date
     expense["categpry"] = user_cata
     expense["description"] = user_desc
