@@ -1,3 +1,4 @@
+import sys
 from storage import (
     gen_id,
     modify_expenses_storage,
@@ -57,8 +58,15 @@ def prompt_expense():
             "amount": f"{amount:.2f}",
         }
         modify_expenses_storage(additions)
+
+        expense_again = input("Would you like to input another expense? Y/N: ").strip()
+        if expense_again == "Y":
+            prompt_expense()
+        else:
+            sys.exit(1)
     
     else:
         print("Error. Please fix the following and retry:")
         for err in errors:
             print(f"- {err}")
+        prompt_expense()
