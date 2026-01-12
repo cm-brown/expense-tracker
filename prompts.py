@@ -14,15 +14,15 @@ def prompt_start():
         Type the number of the option you would like to pick.\n
         1. ADD AN EXPENSE\n
         2. VIEW MONTHLY EXPENSE REPORT\n
-    """)
-    match response:
-        case "1":
-            prompt_expense()
-        case "2":
-            prompt_monthly_total()
-        case _:
-            print("Error. Input value not an option.")
-            prompt_start()
+    """).strip()
+
+    if start == "1":
+        prompt_expense()
+    elif start == "2":
+        prompt_monthly_total()
+    else:
+        print("Error. Input value not an option.")
+        prompt_start()
 
 
 
