@@ -44,3 +44,14 @@ def write_expenses_storage(expenses, filepath):
         expensewriter.writeheader()
         expensewriter.writerows(expenses)
     print("Data uploaded successfully")
+
+# Deletes a row from the storage csv by ID #
+def delete_expense_storage(expense_id):
+    expenses = read_expenses_storage(storage_file)
+    filtered_expenses = [row for row in expenses if row.get("id") != (expense_id)]
+
+    if len(filtered_expenses) == len(expenses):
+        print("No expense found with that ID. Please try again.")
+        return
+
+    write_expenses_storage(filtered_expenses, storage_file)

@@ -1,31 +1,35 @@
 from storage import (
     gen_id,
     modify_expenses_storage,
+    delete_expense_storage,
 )
 from reports import (
     monthly_total,
 )
 
-# Welcome prompt for user start
+# Welcome menu for user start
 def prompt_start():
     start = input("""
         Welcome to Expense Tracker!\n
         Type the number of the option you would like to pick.\n
         1. ADD AN EXPENSE\n
         2. VIEW MONTHLY EXPENSE REPORT\n
+        3. EDIT AN EXISTING EXPENSE\n
     """).strip()
 
     if start == "1":
         prompt_expense()
     elif start == "2":
         prompt_monthly_total()
+    elif start == "3":
+        prompt_edit_expense()
     else:
         print("Error. Input value not an option.")
         prompt_start()
 
 
 
-# Prompt for user to input an expense
+# Prompt for the user to input an expense
 def prompt_expense():
     date_str = input("Date (MM-DD-YYYY): ").strip()
     category = input("Category: ").strip()
@@ -77,7 +81,7 @@ def prompt_expense():
             print(f"- {err}")
         prompt_expense()
 
-# Prompt for user to view total expenses catagorized by month
+# Prompt for the user to view total expenses categorized by month
 def prompt_monthly_total():
     year_response = int(input("Which year?: "))
     month_response = int(input("Which month would you like to view? (respond with a number 1 - 12): "))
@@ -95,3 +99,14 @@ def prompt_monthly_total():
     else:
         print("- Error. Response was not 1 - 12. Please try again")
         prompt_monthly_total()
+
+# Prompt for the user to edit an expense
+def prompt_edit_expense():
+    expense_q_1 = input("Would you like to edit or delete an expense? E/D: ").strip()
+    if expense_q_1.lower() == "d":
+        delete_response = input("Which expense would you like to delete? (respond with the id number): ").strip()
+        delete_expense_storage(delete_response)
+    elif expense_q_1.lower() == "e":
+        edit_response = int(input("Which expense would you like to edit? (respond with the id number): ").strip())
+
+
