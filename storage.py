@@ -39,6 +39,9 @@ def modify_expenses_storage(additions_dict):
 
 # Writes the contents of read_expenses after modification
 def write_expenses_storage(expenses, filepath):
+    for index, expense in enumerate(expenses, start=1):
+        expense["id"] = index
+
     with open(filepath, mode='w', newline='') as csvfile:
         expensewriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
         expensewriter.writeheader()

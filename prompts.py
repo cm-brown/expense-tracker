@@ -14,7 +14,8 @@ def prompt_start():
         Type the number of the option you would like to pick.\n
         1. ADD AN EXPENSE\n
         2. VIEW MONTHLY EXPENSE REPORT\n
-        3. EDIT AN EXISTING EXPENSE\n
+        3. EDIT OR DELETE AN EXISTING EXPENSE\n
+        4. EXIT EXPENSE TRACKER\n
     """).strip()
 
     if start == "1":
@@ -22,7 +23,9 @@ def prompt_start():
     elif start == "2":
         prompt_monthly_total()
     elif start == "3":
-        prompt_edit_expense()
+        prompt_edit_or_delete_expense()
+    elif start == "4":
+        return
     else:
         print("Error. Input value not an option.")
         prompt_start()
@@ -42,7 +45,7 @@ def prompt_expense():
     if len(parts) != 3 or not all(p.isdigit() for p in parts):
         errors.append("date must be in MM-DD-YYYY format")
     else:
-        day, month, year = map(int, parts)
+        month, day, year = map(int, parts)
         if not (1 <= day <= 31 and 1 <= month <= 12 and 1 <= year <= 9999):
             errors.append("date values are out of range")
 
@@ -73,7 +76,7 @@ def prompt_expense():
         if expense_again.lower() == "y":
             prompt_expense()
         else:
-            return
+            prompt_start()
     
     else:
         print("Error. Please fix the following and retry:")
@@ -95,18 +98,32 @@ def prompt_monthly_total():
         if repeat.lower() == "y":
             prompt_monthly_total()
         else:
-            return
+            prompt_start()
     else:
         print("- Error. Response was not 1 - 12. Please try again")
         prompt_monthly_total()
 
 # Prompt for the user to edit an expense
-def prompt_edit_expense():
+def prompt_edit_or_delete_expense():
+    # User delete logic
     expense_q_1 = input("Would you like to edit or delete an expense? E/D: ").strip()
     if expense_q_1.lower() == "d":
+        prompt_delete()
+    # User edit logic
+    elif expense_q_1.lower() == "e":
+        prompt_edit()
+
+def prompt_delete():
+    delete_response = input("Which expense would you like to delete? (respond with the id number): ").strip()
+    delete_expense_storage(delete_response)
+
+    delete_repeat = input("Would you like to delete another expense? Y/N: ").strip()
+    if delete_repeat.lower() == "y":
         delete_response = input("Which expense would you like to delete? (respond with the id number): ").strip()
         delete_expense_storage(delete_response)
-    elif expense_q_1.lower() == "e":
-        edit_response = int(input("Which expense would you like to edit? (respond with the id number): ").strip())
+    else:
+        prompt_start()
 
+def prompt_edit():
+    edit_response = int(input("Which expense would you like to edit? (respond with the id number): ").strip())
 
