@@ -2,6 +2,7 @@ from storage import (
     gen_id,
     modify_expenses_storage,
     delete_expense_storage,
+    edit_expense_storage,
 )
 from reports import (
     monthly_total,
@@ -125,5 +126,5 @@ def prompt_delete():
         prompt_start()
 
 def prompt_edit():
-    edit_response = int(input("Which expense would you like to edit? (respond with the id number): ").strip())
-
+    edit_response = input("Which expense would you like to edit? (respond with the id number): ").strip()
+    edit_expense_storage(edit_response)
