@@ -127,4 +127,14 @@ def prompt_delete():
 
 def prompt_edit():
     edit_response = input("Which expense would you like to edit? (respond with the id number): ").strip()
-    edit_expense_storage(edit_response)
+    new_date = input("Date (MM-DD-YYYY): ").strip()
+    new_category = input("Category: ").strip()
+    new_description = input("Description: ").strip()
+    new_amount = input("Amount (No negative #'s): ").strip()
+    edit_expense_storage(edit_response, new_date, new_category, new_description, new_amount)
+
+    edit_repeat = input("Would you like to edit another expense? Y/N: ").strip()
+    if edit_repeat.lower() == "y":
+        prompt_edit()
+    else:
+        prompt_start()

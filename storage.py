@@ -59,7 +59,13 @@ def delete_expense_storage(expense_id):
 
     write_expenses_storage(filtered_expenses, storage_file)
 
-def edit_expense_storage(expense_id):
+def edit_expense_storage(expense_id, new_date, new_category, new_description, new_amount):
     expenses = read_expenses_storage(storage_file)
     expense = [row for row in expenses if row.get("id") == expense_id]
-    print(expense)
+    expense[0]["date"] = new_date
+    expense[0]["category"] = new_category
+    expense[0]["description"] = new_description
+    expense[0]["amount"] = new_amount
+
+    write_expenses_storage(expenses, storage_file)
+    print("Expense edited successfully.")
