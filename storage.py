@@ -23,7 +23,7 @@ def read_expenses_storage(filepath):
             read_expenses.append(row)
         return read_expenses
 
-# Generates an id for the row
+# Generates an id for every row in the csv
 def gen_id():
     expenses = read_expenses_storage(storage_file)
     if not expenses:
@@ -46,7 +46,7 @@ def write_expenses_storage(expenses, filepath):
         expensewriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
         expensewriter.writeheader()
         expensewriter.writerows(expenses)
-    print("Data uploaded successfully")
+    print("Data updated successfully")
 
 # Deletes a row from the storage csv by ID #
 def delete_expense_storage(expense_id):

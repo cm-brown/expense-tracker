@@ -50,6 +50,9 @@ def prompt_expense():
         if not (1 <= day <= 31 and 1 <= month <= 12 and 1 <= year <= 9999):
             errors.append("date values are out of range")
 
+        if month == 2 and day > 29:
+            errors.append("An invalid day was entered for February. Please try again.")
+
     if not category:
         errors.append("category required")
     
