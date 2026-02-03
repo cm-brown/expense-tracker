@@ -15,7 +15,7 @@ from datetime import date
 def prompt_start():
     print(f"""
         Welcome to Expense Tracker!\n
-        You've spent a total of ${monthly_total(date.today().year, date.today().month):.2f} this month.\n
+        You've spent a total of ${monthly_total(date.today().year, date.today().month)[0]:.2f} this month.\n
         Type the number of the option you would like to pick.\n
     """)
 
@@ -122,7 +122,10 @@ def prompt_monthly_total():
     month_response = int(input("Which month would you like to view? (respond with a number 1 - 12): "))
 
     if 1 <= month_response <= 12:
-        total = monthly_total(year_response, month_response)
+        total, categories = monthly_total(year_response, month_response)
+        print("Spending by category:")
+        for category in categories:
+            print(f"{category}: {categories[category]}")
         print(f"Total for month {month_response}: ${total:.2f}")
 
         repeat = input("Would you like to view another month? Y/N: ").strip()

@@ -24,7 +24,4 @@ def monthly_total(user_year, user_month):
         amount += total
         total = amount
 
-    print("Spending by category:")
-    for category in category_totals:
-        print(f"{category}: {category_totals[category]}")
-    return total
+    return total, category_totals
