@@ -38,9 +38,6 @@ def prompt_start():
         print("Error. Input value not an option.")
         prompt_start()
 
-
-
-# Prompt for the user to input an expense
 def prompt_expense():
     additions = {}
 
@@ -91,7 +88,7 @@ def prompt_expense():
 
     def amount_get():
         errors = []
-        amount_str = input("Amount (No negative #'s): ").strip()
+        amount_str = float(input("Amount (No negative #'s): ").strip())
         try:
             amount = float(amount_str)
             if amount <= 0:
@@ -123,7 +120,7 @@ def prompt_expense():
 def prompt_monthly_total():
     year_response = int(input("Which year?: "))
     month_response = int(input("Which month would you like to view? (respond with a number 1 - 12): "))
-    
+
     if 1 <= month_response <= 12:
         total = monthly_total(year_response, month_response)
         print(f"Total for month {month_response}: ${total:.2f}")
