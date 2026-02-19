@@ -13,30 +13,30 @@ from datetime import date
 
 # Welcome menu for user start
 def prompt_start():
-    print(f"""
-        Welcome to Expense Tracker!\n
-        You've spent a total of ${monthly_total(date.today().year, date.today().month)[0]:.2f} this month.\n
-        Type the number of the option you would like to pick.\n
-    """)
+    while True:
+        print(f"""
+            Welcome to Expense Tracker!\n
+            You've spent a total of ${monthly_total(date.today().year, date.today().month)[0]:.2f} this month.\n
+            Type the number of the option you would like to pick.\n
+        """)
 
-    start = input("""
-        1. ADD AN EXPENSE\n
-        2. VIEW MONTHLY EXPENSE REPORT\n
-        3. EDIT OR DELETE AN EXISTING EXPENSE\n
-        4. EXIT EXPENSE TRACKER\n
-    """).strip()
+        start = input("""
+            1. ADD AN EXPENSE\n
+            2. VIEW MONTHLY EXPENSE REPORT\n
+            3. EDIT OR DELETE AN EXISTING EXPENSE\n
+            4. EXIT EXPENSE TRACKER\n
+        """).strip()
 
-    if start == "1":
-        prompt_expense()
-    elif start == "2":
-        prompt_monthly_total()
-    elif start == "3":
-        prompt_edit_or_delete_expense()
-    elif start == "4":
-        return
-    else:
-        print("Error. Input value not an option.")
-        prompt_start()
+        if start == "1":
+            prompt_expense()
+        elif start == "2":
+            prompt_monthly_total()
+        elif start == "3":
+            prompt_edit_or_delete_expense()
+        elif start == "4":
+            break
+        else:
+            print("Error. Input value not an option.")
 
 def prompt_expense():
     additions = {}
